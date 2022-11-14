@@ -6,14 +6,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import ku.cs.FXRouter;
 import ku.cs.system.models.Product;
-import ku.cs.system.services.ProductService;
-import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
 public class AddProductController {
 
     @FXML
@@ -33,7 +30,6 @@ public class AddProductController {
 
     @FXML
     Label statusLabel;
-    private ProductService service = new ProductService();
     private List<Product> products = new ArrayList();
     private Product product;
 
@@ -43,13 +39,11 @@ public class AddProductController {
         priceLabel.setText("");
         amountLabel.setText("");
         statusLabel.setText("");
-        products = service.getAll();
     }
 
     @FXML
     public void clickFindProduct(ActionEvent actionEvent){
         int id = Integer.parseInt(IDField.getText());
-        product = service.getProduct(id);
         nameLabel.setText(product.getP_Name());
         priceLabel.setText(""+product.getP_Price());
         amountLabel.setText(""+product.getP_Amount());
@@ -60,12 +54,6 @@ public class AddProductController {
     public void clickAddProduct(ActionEvent actionEvent){
         int amount = Integer.parseInt(amountField.getText());
         product.setP_Amount(product.AddProduct(amount));
-        try {
-            service.create(product);
-        }
-        catch (RuntimeException r) {
-            System.out.println(r);
-        }
         statusLabel.setText("เพิ่มสินค้าสำเร็จ");
     }
 

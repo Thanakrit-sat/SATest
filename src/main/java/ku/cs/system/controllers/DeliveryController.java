@@ -6,9 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import ku.cs.FXRouter;
 import ku.cs.system.models.DO;
-import ku.cs.system.models.Product;
-import ku.cs.system.services.DOService;
-import ku.cs.system.services.ProductService;
 
 import java.io.IOException;
 
@@ -27,7 +24,6 @@ public class DeliveryController {
 
     @FXML
     private Label statusLabel;
-    private DOService service = new DOService();
 
     @FXML void initialize(){
         statusLabel.setText("");
@@ -51,12 +47,6 @@ public class DeliveryController {
         int amount = Integer.parseInt(amountText);
 
         DO delivery = new DO(co_id, price, product, amount);
-        try {
-            service.create(delivery);
-        }
-        catch (RuntimeException r) {
-            System.out.println(r);
-        }
         statusLabel.setText("กรอกข้อมูลสำเร็จ");
     }
 

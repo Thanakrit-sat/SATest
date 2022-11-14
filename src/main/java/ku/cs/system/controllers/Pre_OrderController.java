@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import ku.cs.FXRouter;
-import ku.cs.system.services.CustService;
-import ku.cs.system.services.Pre_ProdService;
 
 import java.io.IOException;
 
@@ -21,8 +19,6 @@ public class Pre_OrderController {
 
     @FXML
     private TextField priceField;
-    private Pre_ProdService pre_prodService = new Pre_ProdService();
-    private CustService custService = new CustService();
 
     @FXML void initialize(){}
 

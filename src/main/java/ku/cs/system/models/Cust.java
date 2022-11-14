@@ -2,7 +2,7 @@ package ku.cs.system.models;
 
 import java.io.Serializable;
 
-public class Cust implements Serializable {
+public class Cust {
     private int C_ID;
     private String C_Name;
     private String C_Phone;

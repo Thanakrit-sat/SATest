@@ -10,14 +10,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ku.cs.FXRouter;
 import ku.cs.system.models.Product;
-import ku.cs.system.services.ProductService;
-import ku.cs.system.services.SuppService;
-import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.util.List;
 
-@Controller
 public class BuyProductController {
     @FXML
     private TableColumn<Product, String> amountColumn;
@@ -37,7 +33,6 @@ public class BuyProductController {
     @FXML
     Label amountLabel;
     private Product selectedProduct;
-    private ProductService productService = new ProductService();
     private ObservableList<Product> productObservableList;
     private List<Product> products;
 
@@ -45,8 +40,6 @@ public class BuyProductController {
         nameLabel.setText("");
         priceLabel.setText("");
         amountLabel.setText("");
-        products = productService.getAll();
-        showProductData();
         productTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 showSelectedProduct(newValue);

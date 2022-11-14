@@ -6,7 +6,6 @@ import ku.cs.FXRouter;
 
 import java.io.IOException;
 
-
 public class HomeController {
 
     @FXML void initialize(){}

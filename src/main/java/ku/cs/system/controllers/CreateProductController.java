@@ -6,21 +6,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import ku.cs.FXRouter;
 import ku.cs.system.models.Product;
-import ku.cs.system.services.ProductService;
-import org.springframework.stereotype.Controller;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
 public class CreateProductController {
     @FXML TextField nameField;
     @FXML TextField priceField;
     @FXML TextField amountField;
     @FXML Label statusLabel;
 
-    private ProductService service = new ProductService();
     private List<Product> products = new ArrayList();
 
     @FXML void initialize(){
@@ -43,13 +39,6 @@ public class CreateProductController {
         int amount = Integer.parseInt(amountText);
 
         Product product = new Product(name, price, amount);
-        try {
-            service.create(product);
-            System.out.println(service.getAll());
-        }
-        catch (RuntimeException r) {
-            System.out.println(r);
-        }
         statusLabel.setText("กรอกข้อมูลสำเร็จ");
     }
 

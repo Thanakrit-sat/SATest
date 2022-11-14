@@ -8,9 +8,6 @@ import ku.cs.FXRouter;
 import ku.cs.system.models.Product;
 import ku.cs.system.models.SO;
 import ku.cs.system.models.Supp;
-import ku.cs.system.services.ProductService;
-import ku.cs.system.services.SOService;
-import ku.cs.system.services.SuppService;
 
 import java.io.IOException;
 
@@ -31,8 +28,6 @@ public class SupplyController {
 
     @FXML
     private Label typeLabel;
-    private SuppService suppService = new SuppService();
-    private SOService soService = new SOService();
     private Supp supp;
     private Product product;
 
@@ -45,7 +40,6 @@ public class SupplyController {
     @FXML
     public void clickFindSupp(){
         int id = Integer.parseInt(IDField.getText());
-        supp = suppService.getSupp(id);
         nameLabel.setText(supp.getS_Name());
         phoneLabel.setText(supp.getS_Phone());
         typeLabel.setText(""+supp.getP_ID());
@@ -56,12 +50,6 @@ public class SupplyController {
         int amount = Integer.parseInt(amountField.getText());
         float price = Float.parseFloat(priceField.getText());
         SO so = new SO(supp.getP_ID(), supp.getS_ID(), amount, price);
-        try {
-            soService.create(so);
-        }
-        catch (RuntimeException r) {
-            System.out.println(r);
-        }
     }
 
     @FXML

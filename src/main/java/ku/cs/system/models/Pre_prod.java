@@ -2,7 +2,7 @@ package ku.cs.system.models;
 
 import java.io.Serializable;
 
-public class Pre_prod implements Serializable {
+public class Pre_prod{
     private int Pre_ID;
     private int C_ID;
     private int Pre_Price;

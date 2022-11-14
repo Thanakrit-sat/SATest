@@ -2,7 +2,7 @@ package ku.cs.system.models;
 
 import java.io.Serializable;
 
-public class SO implements Serializable {
+public class SO{
     private int SO_ID;
     private int P_ID;
     private int S_ID;
