@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #4a027d;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.system.controllers.HomeController">
+    <children>
+        <AnchorPane prefHeight="600.0" prefWidth="277.0" style="-fx-background-color: #5a0099;">
+            <children>
+                <VBox layoutY="185.0" prefHeight="414.0" prefWidth="278.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#clickBuySupply" prefHeight="60.0" prefWidth="292.0" stylesheets="@styles.css" text="รับซื้อสินค้า" textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font></Button>
+                        <Button mnemonicParsing="false" onAction="#clickAddProduct" prefHeight="60.0" prefWidth="292.0" stylesheets="@styles.css" text="เพิ่มสินค้า" textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font></Button>
+                        <Button mnemonicParsing="false" onAction="#clickCreateProduct" prefHeight="60.0" prefWidth="292.0" stylesheets="@styles.css" text="สร้างรายการสินค้า" textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font></Button>
+                        <Button mnemonicParsing="false" onAction="#clickBuyProduct" prefHeight="60.0" prefWidth="292.0" stylesheets="@styles.css" text="เลือกซื้อสินค้า" textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font></Button>
+                        <Button mnemonicParsing="false" onAction="#clickPre_Order" prefHeight="60.0" prefWidth="292.0" stylesheets="@styles.css" text="Pre-order สินค้า" textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font></Button>
+                        <Button mnemonicParsing="false" onAction="#clickDelivery" prefHeight="60.0" prefWidth="292.0" stylesheets="@styles.css" text="จัดส่งสินค้า" textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font></Button>
+                        <Button mnemonicParsing="false" onAction="#clickConfirm" prefHeight="60.0" prefWidth="292.0" stylesheets="@styles.css" text="ยืนยันรับสินค้า" textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font></Button>
+                    </children>
+                </VBox>
+                <Pane layoutY="70.0" prefHeight="92.0" prefWidth="278.0" style="-fx-background-color: #7500c7; -fx-background-radius: 5;">
+                    <children>
+                        <Label layoutX="66.0" layoutY="25.0" text="Home Screen" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="45.0" fitWidth="40.0" layoutX="14.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../../../../../Users/Jupit/Downloads/images/home.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="278.0" prefHeight="600.0" prefWidth="523.0" />
+    </children>
+</AnchorPane>
