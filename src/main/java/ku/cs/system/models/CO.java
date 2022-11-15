@@ -5,12 +5,16 @@ import java.io.Serializable;
 public class CO {
     private int CO_ID;
     private int P_ID;
+
+    private int C_ID;
     private String CO_Prod;
     private int CO_Amount;
     private float CO_Price;
 
-    public CO(int p_ID, String CO_Prod, int CO_Amount, float CO_Price) {
+    public CO(int CO_ID, int p_ID, int c_ID, String CO_Prod, int CO_Amount, float CO_Price) {
+        this.CO_ID = CO_ID;
         this.P_ID = p_ID;
+        this.C_ID = c_ID;
         this.CO_Prod = CO_Prod;
         this.CO_Amount = CO_Amount;
         this.CO_Price = CO_Price;

@@ -5,15 +5,16 @@ import java.io.Serializable;
 public class Pre_prod{
     private int Pre_ID;
     private int C_ID;
-    private int Pre_Price;
     private String Pre_Name;
+    private float Pre_Price;
     private int Pre_Amount;
 
-    public Pre_prod(int c_ID, int pre_Price, String pre_Name, int pre_Amount) {
-        this.C_ID = c_ID;
-        this.Pre_Price = pre_Price;
-        this.Pre_Name = pre_Name;
-        this.Pre_Amount = pre_Amount;
+    public Pre_prod(int pre_ID, int c_ID, String pre_Name, float pre_Price, int pre_Amount) {
+        Pre_ID = pre_ID;
+        C_ID = c_ID;
+        Pre_Name = pre_Name;
+        Pre_Price = pre_Price;
+        Pre_Amount = pre_Amount;
     }
 
     public Pre_prod(){}
@@ -34,7 +35,7 @@ public class Pre_prod{
         C_ID = c_ID;
     }
 
-    public int getPre_Price() {
+    public float getPre_Price() {
         return Pre_Price;
     }
 

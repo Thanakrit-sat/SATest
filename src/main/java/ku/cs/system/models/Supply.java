@@ -1,20 +1,21 @@
 package ku.cs.system.models;
 
-import java.io.Serializable;
-
-public class Supp {
+public class Supply {
     private int S_ID;
+    private int P_ID;
     private String S_Name;
     private String S_Phone;
-    private int P_ID;
+    private String S_Address;
 
-    public Supp(String s_Name, String s_Phone, int p_ID) {
-        this.S_Name = s_Name;
-        this.S_Phone = s_Phone;
-        this.P_ID = p_ID;
+    public Supply(int s_ID, int p_ID, String s_Name, String s_Phone, String s_Address) {
+        S_ID = s_ID;
+        P_ID = p_ID;
+        S_Name = s_Name;
+        S_Phone = s_Phone;
+        S_Address = s_Address;
     }
 
-    public Supp(){}
+    public Supply(){}
 
     public int getS_ID() {
         return S_ID;

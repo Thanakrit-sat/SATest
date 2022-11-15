@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import ku.cs.FXRouter;
 import ku.cs.system.models.Product;
 import ku.cs.system.models.SO;
-import ku.cs.system.models.Supp;
+import ku.cs.system.models.Supply;
 
 import java.io.IOException;
 
@@ -28,7 +28,7 @@ public class SupplyController {
 
     @FXML
     private Label typeLabel;
-    private Supp supp;
+    private Supply supp;
     private Product product;
 
     @FXML void initialize(){
@@ -49,7 +49,7 @@ public class SupplyController {
     public void clickBuyProduct(){
         int amount = Integer.parseInt(amountField.getText());
         float price = Float.parseFloat(priceField.getText());
-        SO so = new SO(supp.getP_ID(), supp.getS_ID(), amount, price);
+
     }
 
     @FXML

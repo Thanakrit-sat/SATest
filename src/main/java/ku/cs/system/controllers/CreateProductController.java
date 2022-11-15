@@ -38,7 +38,6 @@ public class CreateProductController {
         float price = Float.parseFloat(priceText);
         int amount = Integer.parseInt(amountText);
 
-        Product product = new Product(name, price, amount);
         statusLabel.setText("กรอกข้อมูลสำเร็จ");
     }
 

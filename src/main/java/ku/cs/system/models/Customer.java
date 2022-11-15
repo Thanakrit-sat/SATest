@@ -1,20 +1,19 @@
 package ku.cs.system.models;
 
-import java.io.Serializable;
-
-public class Cust {
+public class Customer {
     private int C_ID;
     private String C_Name;
     private String C_Phone;
     private String C_Addrs;
 
-    public Cust(String c_Name, String c_Phone, String c_Addrs) {
+    public Customer(int C_ID, String c_Name, String c_Phone, String c_Addrs) {
+        this.C_ID = C_ID;
         this.C_Name = c_Name;
         this.C_Phone = c_Phone;
         this.C_Addrs = c_Addrs;
     }
 
-    public Cust(){}
+    public Customer(){}
 
     public int getC_ID() {
         return C_ID;

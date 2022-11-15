@@ -4,16 +4,17 @@ import java.io.Serializable;
 
 public class SO{
     private int SO_ID;
-    private int P_ID;
     private int S_ID;
-    private int SO_Amount;
+    private int P_ID;
     private float SO_Cost;
+    private int SO_Amount;
 
-    public SO(int p_ID, int s_ID, int SO_Amount, float SO_Cost) {
-        this.P_ID = p_ID;
-        this.S_ID = s_ID;
-        this.SO_Amount = SO_Amount;
+    public SO(int SO_ID, int s_ID, int p_ID, float SO_Cost, int SO_Amount) {
+        this.SO_ID = SO_ID;
+        S_ID = s_ID;
+        P_ID = p_ID;
         this.SO_Cost = SO_Cost;
+        this.SO_Amount = SO_Amount;
     }
 
     public SO(){}

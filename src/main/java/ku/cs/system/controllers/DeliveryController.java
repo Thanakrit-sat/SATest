@@ -46,7 +46,6 @@ public class DeliveryController {
         float price = Float.parseFloat(priceText);
         int amount = Integer.parseInt(amountText);
 
-        DO delivery = new DO(co_id, price, product, amount);
         statusLabel.setText("กรอกข้อมูลสำเร็จ");
     }
 

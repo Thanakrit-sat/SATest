@@ -9,7 +9,8 @@ public class DO {
     private String DO_Prod;
     private int DO_Amount;
 
-    public DO(int CO_ID, float DO_Price, String DO_Prod, int DO_Amount) {
+    public DO(int DO_ID, int CO_ID, int DO_Amount, float DO_Price, String DO_Prod) {
+        this.DO_ID = DO_ID;
         this.CO_ID = CO_ID;
         this.DO_Price = DO_Price;
         this.DO_Prod = DO_Prod;

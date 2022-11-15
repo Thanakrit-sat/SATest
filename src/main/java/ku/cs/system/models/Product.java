@@ -10,7 +10,8 @@ public class Product{
 
     public Product(){}
 
-    public Product(String p_Name, float p_Price, int p_Amount) {
+    public Product(int ID, String p_Name, float p_Price, int p_Amount) {
+        this.P_ID = ID;
         this.P_Name = p_Name;
         this.P_Price = p_Price;
         this.P_Amount = p_Amount;
