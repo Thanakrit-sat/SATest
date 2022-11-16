@@ -11,8 +11,8 @@ public class SO{
 
     public SO(int SO_ID, int s_ID, int p_ID, float SO_Cost, int SO_Amount) {
         this.SO_ID = SO_ID;
-        S_ID = s_ID;
-        P_ID = p_ID;
+        this.S_ID = s_ID;
+        this.P_ID = p_ID;
         this.SO_Cost = SO_Cost;
         this.SO_Amount = SO_Amount;
     }

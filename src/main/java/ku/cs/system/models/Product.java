@@ -22,6 +22,11 @@ public class Product{
         return totalAmount;
     }
 
+    public float totalPrice(int amount){
+        float total = P_Price * amount;
+        return total;
+    }
+
     public float BuyProduct(int amount){
         float totalPrice = amount * P_Price;
         return totalPrice;

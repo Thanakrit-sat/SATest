@@ -38,4 +38,30 @@ public class SODataAccessor {
             return soList;
         }
     }
+
+    public void insertSO(SO so) throws SQLException {
+        PreparedStatement preparedStatement=null;
+        try {
+            int SO_ID = so.getSO_ID();
+            int s_ID = so.getS_ID();
+            int p_ID = so.getP_ID();
+            float SO_Cost = so.getSO_Cost();
+            int SO_Amount = so.getSO_Amount();
+            String query =
+                    "INSERT INTO SUPPLYORDER (SO_ID, S_ID, P_ID, SO_COST, SO_Amount) VALUES (?,?,?,?,?)";
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1,SO_ID);
+            preparedStatement.setInt(2,s_ID);
+            preparedStatement.setInt(3,p_ID);
+            preparedStatement.setFloat(4,SO_Cost);
+            preparedStatement.setInt(5,SO_Amount);
+
+            preparedStatement.executeUpdate();
+
+            System.out.println("add SO successfully!");
+        }catch (Exception e){
+            System.out.println("add SO failed!");
+        }
+    }
 }

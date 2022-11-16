@@ -6,15 +6,9 @@ import ku.cs.FXRouter;
 import ku.cs.system.services.ProductDataAccessor;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class HomeController {
-    private ProductDataAccessor dataAccessor;
-    @FXML void initialize() throws SQLException, ClassNotFoundException {
-        dataAccessor = new ProductDataAccessor("jdbc:mysql://localhost:3306/jewelsystem",
-                "root", "");
-        System.out.println(dataAccessor.getProducts());
-    }
+    @FXML void initialize() {}
 
     @FXML
     public void clickBuySupply(ActionEvent actionEvent){
