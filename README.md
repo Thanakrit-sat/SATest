@@ -5,4 +5,4 @@
 
 * (6310451367) (รวิภาส ดำเด่นงาม) (Rawipas-Damdenngam)
 
-* (6310451448) (ธนกฤต วงศ์คำจันทร์) (Thanakrit-wongkhamchan)
+* (6310451154) (ธนกฤต วงศ์คำจันทร์) (Thanakrit-wongkhamchan)
