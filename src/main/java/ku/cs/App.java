@@ -25,11 +25,13 @@ public class App extends Application {
         FXRouter.when("home", packageStr+"home.fxml");
         FXRouter.when("supply", packageStr+"supply.fxml");
         FXRouter.when("addProduct", packageStr+"addProduct.fxml");
-        FXRouter.when("createProduct", packageStr+"createProduct.fxml");
+        FXRouter.when("createSupplier", packageStr+"createSupplier.fxml");
         FXRouter.when("buyProduct", packageStr+"buyProduct.fxml");
         FXRouter.when("pre_order", packageStr+"pre_order.fxml");
         FXRouter.when("delivery", packageStr+"delivery.fxml");
         FXRouter.when("confirm", packageStr+"confirm.fxml");
+        FXRouter.when("checkCustomer", packageStr+"checkCustomer.fxml");
+        FXRouter.when("newCustomer", packageStr+"newCustomer.fxml");
     }
 
     public static void setRoot(String fxml) throws IOException {

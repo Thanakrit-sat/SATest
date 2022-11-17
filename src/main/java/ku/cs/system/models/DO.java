@@ -6,15 +6,13 @@ public class DO {
     private int DO_ID;
     private int CO_ID;
     private float DO_Price;
-    private String DO_Prod;
-    private int DO_Amount;
+    private String status;
 
-    public DO(int DO_ID, int CO_ID, int DO_Amount, float DO_Price, String DO_Prod) {
+    public DO(int DO_ID, int CO_ID, float DO_Price, String status) {
         this.DO_ID = DO_ID;
         this.CO_ID = CO_ID;
         this.DO_Price = DO_Price;
-        this.DO_Prod = DO_Prod;
-        this.DO_Amount = DO_Amount;
+        this.status = status;
     }
 
     public DO() {}
@@ -43,19 +41,11 @@ public class DO {
         this.DO_Price = DO_Price;
     }
 
-    public String getDO_Prod() {
-        return DO_Prod;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDO_Prod(String DO_Prod) {
-        this.DO_Prod = DO_Prod;
-    }
-
-    public int getDO_Amount() {
-        return DO_Amount;
-    }
-
-    public void setDO_Amount(int DO_Amount) {
-        this.DO_Amount = DO_Amount;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

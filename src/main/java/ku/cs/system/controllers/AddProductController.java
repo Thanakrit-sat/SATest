@@ -94,10 +94,10 @@ public class AddProductController {
     public void clickCreateProduct(ActionEvent actionEvent){
         try {
             productDataAccessor.shutdown();
-            FXRouter.goTo("createProduct");
+            FXRouter.goTo("createSupplier");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า createProduct ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกำหนด createProduct");
+            System.err.println("ไปที่หน้า createSupplier ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกำหนด createSupplier");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -107,9 +107,9 @@ public class AddProductController {
     public void clickBuyProduct(ActionEvent actionEvent){
         try {
             productDataAccessor.shutdown();
-            FXRouter.goTo("buyProduct");
+            FXRouter.goTo("checkCustomer", "buy");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า buyProduct ไม่ได้");
+            System.err.println("ไปที่หน้า checkCustomer ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด buyProduct");
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -120,10 +120,10 @@ public class AddProductController {
     public void clickPre_Order(ActionEvent actionEvent){
         try {
             productDataAccessor.shutdown();
-            FXRouter.goTo("pre_order");
+            FXRouter.goTo("checkCustomer", "pre");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า pre_order ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกำหนด pre_order");
+            System.err.println("ไปที่หน้า checkCustomer ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกำหนด checkCustomer");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

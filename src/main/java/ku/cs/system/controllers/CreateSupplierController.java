@@ -6,95 +6,86 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import ku.cs.FXRouter;
 import ku.cs.system.models.Product;
-import ku.cs.system.models.SO;
 import ku.cs.system.models.Supply;
 import ku.cs.system.services.ProductDataAccessor;
-import ku.cs.system.services.SODataAccessor;
 import ku.cs.system.services.SupplyDataAccessor;
 
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
 
-public class SupplyController {
+public class CreateSupplierController {
     @FXML
-    private TextField IDField;
-
+    private TextField addressField;
     @FXML
-    private TextField amountField;
-
+    private TextField idField;
     @FXML
-    private Label nameLabel;
-
+    private TextField nameField;
     @FXML
-    private Label phoneLabel;
-
-    @FXML
-    private Label typeLabel;
-
+    private TextField phoneField;
     @FXML
     private Label statusLabel;
     private SupplyDataAccessor supplyDataAccessor;
-    private SODataAccessor soDataAccessor;
     private ProductDataAccessor productDataAccessor;
     private List<Supply> supplies;
-    private  List<Product> products;
-    private List<SO> soList;
+    private List<Product> products;
     private Supply supply;
-    private Product product;
-    private SO so;
-    private int s_id;
-    private int p_id;
 
     @FXML void initialize() throws SQLException, ClassNotFoundException {
-        nameLabel.setText("None");
-        phoneLabel.setText("None");
-        typeLabel.setText("None");
-        statusLabel.setText("");
         supplyDataAccessor = new SupplyDataAccessor("jdbc:mysql://localhost:3306/jewelsystem",
-                "root", "");
-        soDataAccessor = new SODataAccessor("jdbc:mysql://localhost:3306/jewelsystem",
                 "root", "");
         productDataAccessor = new ProductDataAccessor("jdbc:mysql://localhost:3306/jewelsystem",
                 "root", "");
         products = productDataAccessor.getProducts();
         supplies = supplyDataAccessor.getSupplyList();
-        soList = soDataAccessor.getSOList();
+        statusLabel.setText("");
     }
 
     @FXML
-    public void clickFindSupp(){
-        s_id = Integer.parseInt(IDField.getText());
-        supply = supplies.get(s_id-1);
-        p_id = supply.getP_ID();
-        product = products.get(p_id-1);
-        nameLabel.setText(supply.getS_Name());
-        phoneLabel.setText(supply.getS_Phone());
-        typeLabel.setText(product.getP_Name());
-    }
-
-    @FXML
-    public void clickSubmitAddSO() throws SQLException {
-        if(amountField.getText().isBlank()){
-            statusLabel.setText("Please enter the amountField");
+    public void clickSubmit(ActionEvent actionEvent){
+        String name = nameField.getText();
+        String phone = phoneField.getText();
+        String address = addressField.getText();
+        int p_id = Integer.parseInt(idField.getText());
+        if(name.isBlank() || phone.isBlank() || address.isBlank() || idField.getText().isBlank()){
+            statusLabel.setText("Invalid Information");
+            statusLabel.setStyle("-fx-text-fill: #ff546b;");
+            return;
+        }else if (p_id <= 0 || p_id > products.size()){
+            statusLabel.setText("Invalid Information");
             statusLabel.setStyle("-fx-text-fill: #ff546b;");
             return;
         }
-        int amount = Integer.parseInt(amountField.getText());
-        int so_id = soList.size() + 1;
-        float so_cost = product.totalPrice(amount);
-        so = new SO(so_id, s_id, p_id, so_cost, amount);
-        soDataAccessor.insertSO(so);
-        statusLabel.setText("Add order successfully");
-        statusLabel.setStyle("-fx-text-fill: #42ed6a;");
+        supply = new Supply(supplies.size()+1, p_id, name, phone, address);
+        try {
+            supplyDataAccessor.insertSupply(supply);
+            statusLabel.setText("Add supplier successfully");
+            statusLabel.setStyle("-fx-text-fill: #42ed6a;");
+        } catch (SQLException e) {
+            statusLabel.setText("Add supplier to DB failed");
+            statusLabel.setStyle("-fx-text-fill: #ff546b;");
+        }
+    }
+
+    @FXML
+    public void clickBuySupply(ActionEvent actionEvent){
+        try {
+            supplyDataAccessor.shutdown();
+            productDataAccessor.shutdown();
+            FXRouter.goTo("supply");
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้า supply ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกำหนด supply");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     public void clickAddProduct(ActionEvent actionEvent){
         try {
-            productDataAccessor.shutdown();
-            soDataAccessor.shutdown();
             supplyDataAccessor.shutdown();
+            productDataAccessor.shutdown();
             FXRouter.goTo("addProduct");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า addProduct ไม่ได้");
@@ -105,26 +96,10 @@ public class SupplyController {
     }
 
     @FXML
-    public void clickCreateProduct(ActionEvent actionEvent){
-        try {
-            productDataAccessor.shutdown();
-            soDataAccessor.shutdown();
-            supplyDataAccessor.shutdown();
-            FXRouter.goTo("createSupplier");
-        } catch (IOException e) {
-            System.err.println("ไปที่หน้า createSupplier ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกำหนด createSupplier");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
     public void clickBuyProduct(ActionEvent actionEvent){
         try {
-            productDataAccessor.shutdown();
-            soDataAccessor.shutdown();
             supplyDataAccessor.shutdown();
+            productDataAccessor.shutdown();
             FXRouter.goTo("checkCustomer", "buy");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า checkCustomer ไม่ได้");
@@ -137,9 +112,8 @@ public class SupplyController {
     @FXML
     public void clickPre_Order(ActionEvent actionEvent){
         try {
-            productDataAccessor.shutdown();
-            soDataAccessor.shutdown();
             supplyDataAccessor.shutdown();
+            productDataAccessor.shutdown();
             FXRouter.goTo("checkCustomer", "pre");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า checkCustomer ไม่ได้");
@@ -152,9 +126,8 @@ public class SupplyController {
     @FXML
     public void clickDelivery(ActionEvent actionEvent){
         try {
-            productDataAccessor.shutdown();
-            soDataAccessor.shutdown();
             supplyDataAccessor.shutdown();
+            productDataAccessor.shutdown();
             FXRouter.goTo("delivery");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า delivery ไม่ได้");
@@ -167,9 +140,8 @@ public class SupplyController {
     @FXML
     public void clickConfirm(ActionEvent actionEvent) {
         try {
-            productDataAccessor.shutdown();
-            soDataAccessor.shutdown();
             supplyDataAccessor.shutdown();
+            productDataAccessor.shutdown();
             FXRouter.goTo("confirm");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า confirm ไม่ได้");

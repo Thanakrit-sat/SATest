@@ -5,65 +5,84 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import ku.cs.FXRouter;
+import ku.cs.system.models.CO;
 import ku.cs.system.models.DO;
+import ku.cs.system.services.CODataAccessor;
+import ku.cs.system.services.DODataAccessor;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 public class DeliveryController {
     @FXML
-    private TextField AmountField;
-
-    @FXML
-    private TextField CO_IDField;
-
-    @FXML
     private TextField PriceField;
-
     @FXML
-    private TextField ProductField;
-
+    private TextField idField;
     @FXML
     private Label statusLabel;
+    private DODataAccessor doDataAccessor;
+    private CODataAccessor coDataAccessor;
+    private List<DO> doList;
+    private List<CO> coList;
+    private DO delivery;
 
-    @FXML void initialize(){
+    @FXML void initialize() throws SQLException, ClassNotFoundException {
+        doDataAccessor = new DODataAccessor("jdbc:mysql://localhost:3306/jewelsystem",
+                "root", "");
+        coDataAccessor = new CODataAccessor("jdbc:mysql://localhost:3306/jewelsystem",
+                "root", "");
+        coList = coDataAccessor.getCOList();
+        doList = doDataAccessor.getDOList();
         statusLabel.setText("");
     }
 
     @FXML
     public void clickAddDO(){
-        String co_idFieldText = CO_IDField.getText();
-        String product = ProductField.getText();
-        String priceText = PriceField.getText();
-        String amountText = AmountField.getText();
-
-        if(co_idFieldText.isBlank() || product.isBlank() || priceText.isBlank() || amountText.isBlank()){
-            statusLabel.setText("กรอกข้อมูลไม่ถูกต้อง");
-            statusLabel.setStyle("-fx-text-fill: #A31F1F ;");
+        if(idField.getText().isBlank() || PriceField.getText().isBlank()){
+            statusLabel.setText("Invalid Information");
+            statusLabel.setStyle("-fx-text-fill: #ff546b ;");
             return;
         }
-
-        int co_id = Integer.parseInt(co_idFieldText);
-        float price = Float.parseFloat(priceText);
-        int amount = Integer.parseInt(amountText);
-
-        statusLabel.setText("กรอกข้อมูลสำเร็จ");
+        int co_id = Integer.parseInt(idField.getText());
+        Float price = Float.parseFloat(PriceField.getText());
+        if(co_id <= 0 || co_id > coList.size()){
+            statusLabel.setText("Invalid Information");
+            statusLabel.setStyle("-fx-text-fill: #ff546b ;");
+            return;
+        }
+        delivery = new DO(doList.size()+1, co_id, price, "On Going");
+        try {
+            doDataAccessor.insertDO(delivery);
+            statusLabel.setText("Add DO successfully");
+            statusLabel.setStyle("-fx-text-fill: #42ed6a;");
+        } catch (SQLException e) {
+            statusLabel.setText("Add DO to DB failed");
+            statusLabel.setStyle("-fx-text-fill: #ff546b;");
+        }
     }
 
     @FXML
     public void clickBuySupply(ActionEvent actionEvent){
         try {
+            doDataAccessor.shutdown();
+            coDataAccessor.shutdown();
             FXRouter.goTo("supply");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า supply ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด supply");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @FXML
     public void clickAddProduct(ActionEvent actionEvent){
         try {
+            doDataAccessor.shutdown();
+            coDataAccessor.shutdown();
             FXRouter.goTo("addProduct");
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             System.err.println("ไปที่หน้า addProduct ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด addProduct");
         }
@@ -72,19 +91,23 @@ public class DeliveryController {
     @FXML
     public void clickCreateProduct(ActionEvent actionEvent){
         try {
-            FXRouter.goTo("createProduct");
-        } catch (IOException e) {
-            System.err.println("ไปที่หน้า createProduct ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกำหนด createProduct");
+            doDataAccessor.shutdown();
+            coDataAccessor.shutdown();
+            FXRouter.goTo("createSupplier");
+        } catch (IOException | SQLException e) {
+            System.err.println("ไปที่หน้า createSupplier ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกำหนด createSupplier");
         }
     }
 
     @FXML
     public void clickBuyProduct(ActionEvent actionEvent){
         try {
-            FXRouter.goTo("buyProduct");
-        } catch (IOException e) {
-            System.err.println("ไปที่หน้า buyProduct ไม่ได้");
+            doDataAccessor.shutdown();
+            coDataAccessor.shutdown();
+            FXRouter.goTo("checkCustomer", "buy");
+        } catch (IOException | SQLException e) {
+            System.err.println("ไปที่หน้า checkCustomer ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด buyProduct");
         }
     }
@@ -92,20 +115,26 @@ public class DeliveryController {
     @FXML
     public void clickPre_Order(ActionEvent actionEvent){
         try {
-            FXRouter.goTo("pre_order");
-        } catch (IOException e) {
-            System.err.println("ไปที่หน้า pre_order ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกำหนด pre_order");
+            doDataAccessor.shutdown();
+            coDataAccessor.shutdown();
+            FXRouter.goTo("checkCustomer", "pre");
+        } catch (IOException | SQLException e) {
+            System.err.println("ไปที่หน้า checkCustomer ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกำหนด checkCustomer");
         }
     }
 
     @FXML
     public void clickConfirm(ActionEvent actionEvent) {
         try {
+            doDataAccessor.shutdown();
+            coDataAccessor.shutdown();
             FXRouter.goTo("confirm");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า confirm ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด confirm");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

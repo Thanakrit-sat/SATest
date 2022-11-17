@@ -23,7 +23,7 @@
                             <font>
                                 <Font size="18.0" />
                             </font></Button>
-                        <Button mnemonicParsing="false" onAction="#clickCreateProduct" prefHeight="60.0" prefWidth="292.0" stylesheets="@styles.css" text="สร้างรายการสินค้า" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#clickCreateProduct" prefHeight="60.0" prefWidth="292.0" stylesheets="@styles.css" text="สร้างรายชื่อ Supplier" textFill="WHITE">
                             <font>
                                 <Font size="18.0" />
                             </font></Button>

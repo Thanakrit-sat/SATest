@@ -1,6 +1,7 @@
 package ku.cs.system.services;
 
 import ku.cs.system.models.Pre_prod;
+import ku.cs.system.models.Supply;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -35,6 +36,33 @@ public class Pre_prodDataAccessor {
                 preProds.add(preProd);
             }
             return preProds;
+        }
+    }
+
+    public void insertProd(Pre_prod prod) throws SQLException {
+        PreparedStatement preparedStatement=null;
+        try {
+            int pre_ID = prod.getPre_ID();
+            int c_ID = prod.getC_ID();
+            String name = prod.getPre_Name();
+            Float price = prod.getPre_Price();
+            int amount = prod.getPre_Amount();
+
+            String query =
+                    "INSERT INTO PREPROD (Pre_ID, C_ID, Pre_Name, Pre_Price, Pre_Amount) VALUES (?,?,?,?,?)";
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1,pre_ID);
+            preparedStatement.setInt(2,c_ID);
+            preparedStatement.setString(3, name);
+            preparedStatement.setFloat(4,price);
+            preparedStatement.setInt(5,amount);
+
+            preparedStatement.executeUpdate();
+
+            System.out.println("add Product successfully!");
+        }catch (Exception e){
+            System.out.println("add Product failed!");
         }
     }
 }

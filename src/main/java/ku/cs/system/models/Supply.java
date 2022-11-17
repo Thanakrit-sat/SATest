@@ -48,4 +48,12 @@ public class Supply {
     public void setP_ID(int p_ID) {
         P_ID = p_ID;
     }
+
+    public String getS_Address() {
+        return S_Address;
+    }
+
+    public void setS_Address(String s_Address) {
+        S_Address = s_Address;
+    }
 }

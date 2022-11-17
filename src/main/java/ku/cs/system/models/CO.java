@@ -61,4 +61,12 @@ public class CO {
     public void setCO_Price(float CO_Price) {
         this.CO_Price = CO_Price;
     }
+
+    public int getC_ID() {
+        return C_ID;
+    }
+
+    public void setC_ID(int c_ID) {
+        C_ID = c_ID;
+    }
 }

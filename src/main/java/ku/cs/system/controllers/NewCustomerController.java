@@ -5,113 +5,141 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import ku.cs.FXRouter;
-import ku.cs.system.models.Pre_prod;
-import ku.cs.system.services.Pre_prodDataAccessor;
+import ku.cs.system.models.Customer;
+import ku.cs.system.services.CustomerDataAccessor;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Pre_OrderController {
+public class NewCustomerController {
     @FXML
-    private TextField amountField;
+    private TextField addressField;
     @FXML
     private TextField nameField;
     @FXML
-    private TextField priceField;
+    private TextField phoneField;
     @FXML
     private Label statusLabel;
-    private Pre_prodDataAccessor preProdDataAccessor;
-    private List<Pre_prod> prodList;
-    private Pre_prod preProd;
-    private int c_id;
+    private CustomerDataAccessor customerDataAccessor;
+    private List<Customer> customers;
+    private Customer customer;
+    String check;
 
-    @FXML void initialize() throws SQLException, ClassNotFoundException {
-        preProdDataAccessor = new Pre_prodDataAccessor("jdbc:mysql://localhost:3306/jewelsystem",
+    @FXML
+    public void initialize() throws SQLException, ClassNotFoundException {
+        customerDataAccessor = new CustomerDataAccessor("jdbc:mysql://localhost:3306/jewelsystem",
                 "root", "");
-        prodList = preProdDataAccessor.getPreProds();
+        customers = customerDataAccessor.getCustomers();
         statusLabel.setText("");
-        c_id = (int) FXRouter.getData();
+        check = (String) FXRouter.getData();
     }
 
     @FXML
-    public void clickAddPre(){
+    public void clickAddCustomer(){
+        int id = customers.size() + 1;
         String name = nameField.getText();
-        if(name.isBlank() || priceField.getText().isBlank() || amountField.getText().isBlank()){
+        String phone = phoneField.getText();
+        String address = addressField.getText();
+        if(name.isBlank() || phone.isBlank() || address.isBlank()){
             statusLabel.setText("Invalid Information");
             statusLabel.setStyle("-fx-text-fill: #ff546b;");
             return;
         }
-        Float price = Float.parseFloat(priceField.getText());
-        int amount = Integer.parseInt(amountField.getText());
-        preProd = new Pre_prod(prodList.size()+1, c_id, name, price, amount);
-        try{
-            preProdDataAccessor.insertProd(preProd);
-            statusLabel.setText("Add product successfully");
-            statusLabel.setStyle("-fx-text-fill: #42ed6a;");
+        customer = new Customer(id, name, phone, address);
+        try {
+            customerDataAccessor.insertCustomer(customer);
+            customerDataAccessor.shutdown();
+            if(check.equals("buy"))
+                FXRouter.goTo("buyProduct", id);
+            else if (check.equals("pre"))
+                FXRouter.goTo("pre_order", id);
+            else
+                return;
         } catch (SQLException e) {
-            statusLabel.setText("Add supplier to DB failed");
+            statusLabel.setText("Add customer to DB failed");
             statusLabel.setStyle("-fx-text-fill: #ff546b;");
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้า buyProduct ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกำหนด buyProduct");
         }
     }
 
     @FXML
     public void clickBuySupply(ActionEvent actionEvent){
         try {
+            customerDataAccessor.shutdown();
             FXRouter.goTo("supply");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า supply ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด supply");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @FXML
     public void clickAddProduct(ActionEvent actionEvent){
         try {
+            customerDataAccessor.shutdown();
             FXRouter.goTo("addProduct");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า addProduct ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด addProduct");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @FXML
     public void clickCreateProduct(ActionEvent actionEvent){
         try {
+            customerDataAccessor.shutdown();
             FXRouter.goTo("createSupplier");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า createSupplier ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด createSupplier");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @FXML
-    public void clickBuyProduct(ActionEvent actionEvent){
+    public void clickPre_Order(ActionEvent actionEvent){
         try {
-            FXRouter.goTo("checkCustomer", "buy");
+            customerDataAccessor.shutdown();
+            FXRouter.goTo("checkCustomer", "pre");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า checkCustomer ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกำหนด buyProduct");
+            System.err.println("ให้ตรวจสอบการกำหนด pre_order");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @FXML
     public void clickDelivery(ActionEvent actionEvent){
         try {
+            customerDataAccessor.shutdown();
             FXRouter.goTo("delivery");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า delivery ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด delivery");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @FXML
     public void clickConfirm(ActionEvent actionEvent) {
         try {
+            customerDataAccessor.shutdown();
             FXRouter.goTo("confirm");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า confirm ไม่ได้");
             System.err.println("ให้ตรวจสอบการกำหนด confirm");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

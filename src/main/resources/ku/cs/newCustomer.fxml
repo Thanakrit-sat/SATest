@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #4a027d;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.system.controllers.BuyProductController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #4a027d;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.system.controllers.NewCustomerController">
     <children>
         <AnchorPane prefHeight="600.0" prefWidth="277.0" style="-fx-background-color: #5a0099;">
             <children>
@@ -68,79 +64,24 @@
         </AnchorPane>
         <AnchorPane layoutX="278.0" prefHeight="600.0" prefWidth="523.0">
          <children>
-            <TableView fx:id="productTableView" layoutY="407.0" prefHeight="194.0" prefWidth="524.0">
-              <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="222.4000244140625" text="Product Name" />
-                <TableColumn fx:id="priceColumn" prefWidth="179.20001220703125" text="Product Price" />
-                  <TableColumn fx:id="amountColumn" prefWidth="123.199951171875" text="Product Amount" />
-              </columns>
-            </TableView>
-            <Label layoutX="14.0" layoutY="25.0" text="Buy Product" textFill="WHITE">
+            <Label layoutX="137.0" layoutY="154.0" text="New Customer" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="30.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <HBox layoutX="1.0" layoutY="117.0" prefHeight="92.0" prefWidth="524.0">
-               <children>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="103.0" prefWidth="246.0">
-                     <children>
-                        <Label text="Name:" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Price:" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Amount:" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="139.0" prefWidth="269.0">
-                     <children>
-                        <Label fx:id="nameLabel" text="nameLabel" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="priceLabel" text="priceLabel" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="amountLabel" text="amountLabel" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <Label layoutX="216.0" layoutY="81.0" text="Product" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-            </Label>
-            <TextField fx:id="amountField" layoutX="211.0" layoutY="209.0" prefHeight="40.0" prefWidth="104.0" promptText="Enter Amount" style="-fx-background-radius: 30;" />
-            <Button layoutX="222.0" layoutY="260.0" mnemonicParsing="false" onAction="#clickBuyProduct" prefHeight="40.0" prefWidth="80.0" styleClass="fullButton" stylesheets="@styles.css" text="submit" textFill="WHITE">
+            <TextField fx:id="nameField" layoutX="163.0" layoutY="208.0" prefHeight="40.0" prefWidth="197.0" promptText="Enter Name" style="-fx-background-radius: 30;" />
+            <TextField fx:id="phoneField" layoutX="163.0" layoutY="260.0" prefHeight="40.0" prefWidth="197.0" promptText="Enter Phone" style="-fx-background-radius: 30;" />
+            <TextField fx:id="addressField" layoutX="163.0" layoutY="312.0" prefHeight="40.0" prefWidth="197.0" promptText="Enter Address" style="-fx-background-radius: 30;" />
+            <Button layoutX="222.0" layoutY="366.0" mnemonicParsing="false" onAction="#clickAddCustomer" prefHeight="40.0" prefWidth="80.0" styleClass="fullButton" stylesheets="@styles.css" text="submit" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Button>
-            <VBox alignment="CENTER" layoutX="1.0" layoutY="307.0" prefHeight="40.0" prefWidth="524.0">
+            <VBox alignment="CENTER" layoutY="406.0" prefHeight="45.0" prefWidth="523.0">
                <children>
-                  <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" text="statusLabel" textFill="WHITE">
+                  <Label fx:id="statusLabel" text="statusLabel" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                </children>

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #4a027d;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.system.controllers.CreateProductController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #4a027d;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.system.controllers.CheckCustomerController">
     <children>
         <AnchorPane prefHeight="600.0" prefWidth="277.0" style="-fx-background-color: #5a0099;">
             <children>
@@ -24,11 +24,11 @@
                             <font>
                                 <Font size="18.0" />
                             </font></Button>
-                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="292.0" style="-fx-background-color: #7500c7;" stylesheets="@styles.css" text="สร้างรายการสินค้า" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#clickCreateProduct" prefHeight="60.0" prefWidth="292.0" stylesheets="@styles.css" text="สร้างรายชื่อ Supplier" textFill="WHITE">
                             <font>
                                 <Font size="18.0" />
                             </font></Button>
-                        <Button mnemonicParsing="false" onAction="#clickBuyProduct" prefHeight="60.0" prefWidth="292.0" stylesheets="@styles.css" text="เลือกซื้อสินค้า" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="292.0" style="-fx-background-color: #7500c7;" stylesheets="@styles.css" text="เลือกซื้อสินค้า" textFill="WHITE">
                             <font>
                                 <Font size="18.0" />
                             </font></Button>
@@ -64,29 +64,22 @@
         </AnchorPane>
         <AnchorPane layoutX="278.0" prefHeight="600.0" prefWidth="523.0">
          <children>
-            <Label layoutX="200.0" layoutY="164.0" text="New Product" textFill="WHITE">
+            <Label layoutX="180.0" layoutY="216.0" text="Customer" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="30.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <TextField fx:id="nameField" layoutX="130.0" layoutY="228.0" prefHeight="40.0" prefWidth="262.0" promptText="Enter Name" style="-fx-background-radius: 30;" />
-            <TextField fx:id="priceField" layoutX="130.0" layoutY="284.0" prefHeight="40.0" prefWidth="262.0" promptText="Enter Price" style="-fx-background-radius: 30;" />
-            <TextField fx:id="amountField" layoutX="130.0" layoutY="340.0" prefHeight="40.0" prefWidth="262.0" promptText="Enter Amount" style="-fx-background-radius: 30;" />
-            <Button layoutX="221.0" layoutY="397.0" mnemonicParsing="false" onAction="#clickSubmit" prefHeight="40.0" prefWidth="80.0" styleClass="fullButton" stylesheets="@styles.css" text="submit" textFill="WHITE">
+            <TextField fx:id="idField" layoutX="163.0" layoutY="280.0" prefHeight="40.0" prefWidth="197.0" promptText="Enter C_ID" style="-fx-background-radius: 30;" />
+            <Button layoutX="222.0" layoutY="335.0" mnemonicParsing="false" onAction="#clickFindCustomer" prefHeight="40.0" prefWidth="80.0" styleClass="fullButton" stylesheets="@styles.css" text="submit" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Button>
-            <ImageView fitHeight="46.0" fitWidth="56.0" layoutX="147.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../Users/Jupit/Downloads/images/box.png" />
-               </image>
-            </ImageView>
-            <VBox alignment="CENTER" layoutY="437.0" prefHeight="46.0" prefWidth="523.0">
+            <VBox alignment="CENTER" layoutY="384.0" prefHeight="54.0" prefWidth="523.0">
                <children>
-                  <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" text="statusLabel" textFill="WHITE">
+                  <Label fx:id="statusLabel" text="statusLabel" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
